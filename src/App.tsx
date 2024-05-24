@@ -21,11 +21,15 @@ function App() {
         console.log(tasksCopy);
         setTasks(tasksCopy);
     }
+    const deleteFunction = (idTask:string) =>{
+        const updatedTasks = tasks.filter(task => task.id !== idTask);
+        setTasks(updatedTasks);
+    }
     return (
         <>
             <AddTaskForm addText={() => addFunction()} onAdd={(event) =>change(event)} />
             {tasks.map((task) => (
-                <Task key={task.id} text={task.text}/>
+                <Task key={task.id} text={task.text} deleteTask={()=>deleteFunction(task.id)} />
             ))}
         </>
     );
